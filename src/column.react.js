@@ -2,8 +2,7 @@ import Radium from 'radium';
 import React from 'react';
 import { column, columnHidden, columnOffset, columnPull, columnPush, columnWidth } from './grid';
 
-@Radium
-export default class Column extends React.Component {
+class Column extends React.Component {
 
   render() {
     const {
@@ -37,7 +36,7 @@ export default class Column extends React.Component {
       ...props
     } = this.props;
 
-    var styles = [
+    let styles = [
       column,
       xsHidden && columnHidden['xs'],
       xsOffset && columnOffset['xs'][xsOffset],
@@ -83,3 +82,5 @@ export default class Column extends React.Component {
     );
   }
 }
+
+export default Radium(Column)

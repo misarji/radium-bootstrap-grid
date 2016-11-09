@@ -15,7 +15,6 @@
     "computed-property-spacing": 2,
     "consistent-this": [2, "self"],
     "curly": 0,
-    "eol-last": 2,
     "eqeqeq": [2, "allow-null"],
     "guard-for-in": 0,
     "indent": [2, 2, {

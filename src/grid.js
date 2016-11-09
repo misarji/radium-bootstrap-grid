@@ -31,7 +31,7 @@ export const variables = createVariables();
 
 export const container = function (forceMobile) {
 
-  var style = {
+  let styles = {
     marginRight: 'auto',
     marginLeft: 'auto',
     paddingLeft: Math.floor(variables.gridGutterWidth / 2),

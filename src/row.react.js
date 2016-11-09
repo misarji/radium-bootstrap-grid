@@ -2,8 +2,7 @@ import Radium from 'radium';
 import React from 'react';
 import { row, clearfix } from './grid';
 
-@Radium
-export default class Row extends React.Component {
+class Row extends React.Component {
 
   render() {
     const { children, style, ...props } = this.props;
@@ -16,3 +15,5 @@ export default class Row extends React.Component {
     );
   }
 }
+
+export default Radium(Row)
