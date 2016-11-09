@@ -29,21 +29,29 @@ function createVariables() {
 };
 export const variables = createVariables();
 
-export const container = {
-  marginRight: 'auto',
-  marginLeft: 'auto',
-  paddingLeft: Math.floor(variables.gridGutterWidth / 2),
-  paddingRight: Math.ceil(variables.gridGutterWidth / 2),
-  [`@media (min-width: ${variables.screenSMMin}px)`]: {
-    width: variables.containerSM
-  },
-  [`@media (min-width: ${variables.screenMDMin}px)`]: {
-    width: variables.containerMD
-  },
-  [`@media (min-width: ${variables.screenLGMin}px)`]: {
-    width: variables.containerLG
+export const container = function (forceMobile) {
+
+  var style = {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    paddingLeft: Math.floor(variables.gridGutterWidth / 2),
+    paddingRight: Math.ceil(variables.gridGutterWidth / 2)
+  };
+
+  if (!forceMobile) {
+    styles[`@media (min-width: ${variables.screenSMMin}px)`] = {
+      width: variables.containerSM
+    }
+    styles[`@media (min-width: ${variables.screenMDMin}px)`] = {
+      width: variables.containerMD
+    }
+    styles[`@media (min-width: ${variables.screenLGMin}px)`] = {
+      width: variables.containerLG
+    }
   }
-};
+
+  return styles
+}
 
 export const row = {
   marginLeft: Math.ceil(variables.gridGutterWidth / -2),

@@ -1,40 +1,9 @@
-import Component from 'react-pure-render/component';
 import Radium from 'radium';
-import React, {PropTypes as RPT} from 'react';
+import React from 'react';
 import { column, columnHidden, columnOffset, columnPull, columnPush, columnWidth } from './grid';
 
 @Radium
-export default class Column extends Component {
-
-  static propTypes = {
-    children: RPT.node,
-    lg:       RPT.number,
-    lgHidden: RPT.bool,
-    lgOffset: RPT.number,
-    lgPull:   RPT.number,
-    lgPush:   RPT.number,
-    md:       RPT.number,
-    mdHidden: RPT.bool,
-    mdOffset: RPT.number,
-    mdPull:   RPT.number,
-    mdPush:   RPT.number,
-    ms:       RPT.number,
-    msHidden: RPT.bool,
-    msOffset: RPT.number,
-    msPull:   RPT.number,
-    msPush:   RPT.number,
-    sm:       RPT.number,
-    smHidden: RPT.bool,
-    smOffset: RPT.number,
-    smPull:   RPT.number,
-    smPush:   RPT.number,
-    style:    RPT.object,
-    xs:       RPT.number,
-    xsHidden: RPT.bool,
-    xsOffset: RPT.number,
-    xsPull:   RPT.number,
-    xsPush:   RPT.number
-  }
+export default class Column extends React.Component {
 
   render() {
     const {
@@ -68,37 +37,45 @@ export default class Column extends Component {
       ...props
     } = this.props;
 
+    var styles = [
+      column,
+      xsHidden && columnHidden['xs'],
+      xsOffset && columnOffset['xs'][xsOffset],
+      xsPull && columnPull['xs'][xsPull],
+      xsPush && columnPush['xs'][xsPush],
+      xs && columnWidth['xs'][xs]
+    ];
+
+    if (!this.props.forceMobel) {
+      styles = styles.concat([
+        ms && columnWidth['ms'][ms],
+        msHidden && columnHidden['ms'],
+        msOffset && columnOffset['ms'][msOffset],
+        msPull && columnPull['ms'][msPull],
+        msPush && columnPush['ms'][msPush],
+        md && columnWidth['md'][md],
+        mdHidden && columnHidden['md'],
+        mdOffset && columnOffset['md'][mdOffset],
+        mdPull && columnPull['md'][mdPull],
+        mdPush && columnPush['md'][mdPush],
+        sm && columnWidth['sm'][sm],
+        smHidden && columnHidden['sm'],
+        smOffset && columnOffset['sm'][smOffset],
+        smPull && columnPull['sm'][smPull],
+        smPush && columnPush['sm'][smPush],
+        lg && columnWidth['lg'][lg],
+        lgHidden && columnHidden['lg'],
+        lgOffset && columnOffset['lg'][lgOffset],
+        lgPull && columnPull['lg'][lgPull],
+        lgPush && columnPush['lg'][lgPush],
+      ])
+    }
+
+    styles.push(style);
+
     return (
       <div
-        style={[
-          column,
-          xsHidden && columnHidden['xs'],
-          xsOffset && columnOffset['xs'][xsOffset],
-          xsPull && columnPull['xs'][xsPull],
-          xsPush && columnPush['xs'][xsPush],
-          ms && columnWidth['ms'][ms],
-          msHidden && columnHidden['ms'],
-          msOffset && columnOffset['ms'][msOffset],
-          msPull && columnPull['ms'][msPull],
-          msPush && columnPush['ms'][msPush],
-          md && columnWidth['md'][md],
-          mdHidden && columnHidden['md'],
-          mdOffset && columnOffset['md'][mdOffset],
-          mdPull && columnPull['md'][mdPull],
-          mdPush && columnPush['md'][mdPush],
-          sm && columnWidth['sm'][sm],
-          smHidden && columnHidden['sm'],
-          xs && columnWidth['xs'][xs],
-          smOffset && columnOffset['sm'][smOffset],
-          smPull && columnPull['sm'][smPull],
-          smPush && columnPush['sm'][smPush],
-          lg && columnWidth['lg'][lg],
-          lgHidden && columnHidden['lg'],
-          lgOffset && columnOffset['lg'][lgOffset],
-          lgPull && columnPull['lg'][lgPull],
-          lgPush && columnPush['lg'][lgPush],
-          style
-        ]}
+        style={styles}
         {...props}
       >
         {children}
