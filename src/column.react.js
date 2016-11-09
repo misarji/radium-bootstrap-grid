@@ -68,6 +68,10 @@ class Column extends React.Component {
         lgPull && columnPull['lg'][lgPull],
         lgPush && columnPush['lg'][lgPush],
       ])
+    } else {
+      styles = styles.concat([
+        xsHidden && columnHidden['lg']
+      ]);
     }
 
     styles.push(style);
