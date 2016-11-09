@@ -45,7 +45,7 @@ class Column extends React.Component {
       xs && columnWidth['xs'][xs]
     ];
 
-    if (!this.props.forceMobel) {
+    if (!this.props.forceMobile) {
       styles = styles.concat([
         ms && columnWidth['ms'][ms],
         msHidden && columnHidden['ms'],
