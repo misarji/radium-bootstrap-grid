@@ -1,14 +1,13 @@
-var path = require("path");
 module.exports = {
   context: __dirname,
   entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "lib"),
-    publicPath: "lib/", // relative path for github pages
+    path: './lib',
     filename: "main.js", // no hash in main.js because index.html is a static page
     // chunkFilename: "[hash]/js/[id].js",
     // hotUpdateMainFilename: "[hash]/update.json",
     // hotUpdateChunkFilename: "[hash]/js/[id].update.js"
+    libraryTarget: "commonjs2"
   },
   module: {
     loaders: [
@@ -25,9 +24,6 @@ module.exports = {
           /* add a directory to exclude regex */
           exclude: /(scripts|script|node_modules|bower_components|web)/,
           loaders: ['eslint-loader']
-        },{
-          test: /\.ts$/,
-          loader: 'ts-loader'
         }
       ]
   }
